@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  haycarbannualreport:
+    image: haycarbannualreport
+    build:
+      context: .
+      dockerfile: ./Dockerfile

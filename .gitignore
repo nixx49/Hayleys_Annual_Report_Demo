@@ -1,0 +1,9 @@
+/.venv
+/docs
+/docs_text
+.env
+/docs_text_new
+.streamlit
+.idea
+__pycache__
+.vscode
