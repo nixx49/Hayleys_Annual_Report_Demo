@@ -10,13 +10,14 @@ from azure.storage.blob import BlobServiceClient
 from azure.search.documents.indexes import SearchIndexClient
 from azure.search.documents.indexes.models import *
 from azure.search.documents import SearchClient
+from tqdm import tqdm
 
 from dotenv import load_dotenv,dotenv_values
 
 
 load_dotenv()
 values_env_openai = dotenv_values(".env")
-FILE_PATH = "docs_text_new"
+FILE_PATH = "docs_text"
 
 search_creds = AzureKeyCredential(values_env_openai['searchkey'])
 storage_creds = values_env_openai['storagekey']
@@ -157,7 +158,7 @@ def remove_from_index(filename):
 
 create_search_index()
 
-for filename in glob.glob(FILE_PATH + "/*.txt"):
+for filename in tqdm(glob.glob(FILE_PATH + "/*.txt")):
     if values_env_openai['verbose']: print(f"Processing '{filename}'")
     upload_blobs(filename)
     text = get_document_text(filename)
